@@ -1,0 +1,120 @@
+#include <stdio.h>
+void InputMat(int r,int c,int matrix[10][10]);
+void AddMat(int r1,int c1,int a[10][10],int b[10][10]);
+void MultiplyMat(int r1,int c1,int r2,int c2,int a[10][10],int b[10][10]);
+void TransMat(int r,int c,int matrix[10][10]);
+void DisplayMat(int r,int c,int Mat[10][10]);
+void main()
+{
+    int ch,r1,c1,r2,c2,a[10][10],b[10][10];
+    printf("Enter the dimensions of matrix 1\n");
+    scanf("%d%d",&r1,&c1);
+    printf("Enter the elements of matrix 1\n");
+    InputMat(r1,c1,a);
+    printf("Enter the dimensions of matrix 2\n");
+    scanf("%d%d",&r2,&c2);
+    printf("Enter the elements of matrix 2\n");
+    InputMat(r2,c2,b);
+    printf("MENU\n");
+    printf("1.Matrix Addition\n");
+    printf("2.Matrix Multiplication\n");
+    printf("3.Matrix Transpose\n");
+    printf("Enter your choice\n");
+    scanf("%d",&ch);
+    switch(ch)
+    {
+        case 1:
+        {
+            if((r1!=r2)||(c1!=c2))
+            printf("Matrix addition is not possible\n");
+            else
+            {
+                AddMat(r1,c1,a,b);
+            }
+            break;
+        }
+        case 2:
+        {
+            if(r2!=c1)
+            printf("Matrix Multiplication is not possible\n");
+            else
+            {
+                MultiplyMat(r1,c1,r2,c2,a,b);
+            }
+            break;
+        }
+        case 3:
+        {  
+            printf("Transpose of matrix 1 is:\n");
+            TransMat(r1,c1,a);
+            printf("Transpose of matrix 2 is:\n");
+            TransMat(r2,c2,b);
+            break;
+        }
+    }
+}
+void InputMat(int r,int c,int matrix[10][10])
+{
+    int i,j;
+    for(i=0;i<r;i++)
+    {
+        for(j=0;j<c;j++)
+        {
+            scanf("%d",&matrix[i][j]);
+        }
+    }
+}
+void AddMat(int r1,int c1,int a[10][10],int b[10][10])    
+{  
+    int sum[10][10],i,j;
+    for(i=0;i<r1;i++)
+    {
+        for(j=0;j<c1;j++)
+        {
+            sum[i][j]=a[i][j]+b[i][j];
+        }
+    }
+    printf("Addition of two matrices is:\n");
+    DisplayMat(r1,c1,sum);
+}
+void MultiplyMat(int r1,int c1,int r2,int c2,int a[10][10],int b[10][10])
+{  
+    int c[10][10],i,j,k;
+    for(i=0;i<r1;i++)
+    {
+        for(j=0;j<c2;j++)
+        {
+            c[i][j]=0;
+            for(k=0;k<c1;k++)
+            {
+              c[i][j]+=a[i][k]*b[k][j];
+            }
+        }
+    }
+    printf("Multiplication of two matrices is:\n");
+    DisplayMat(r1,c2,c);
+}
+void TransMat(int r,int c,int matrix[10][10])
+{
+    int tr[10][10],i,j;
+    for(i=0;i<r;i++)
+    {
+        for(j=0;j<c;j++)
+        {
+            tr[j][i]=matrix[i][j];
+        }
+    }
+    DisplayMat(c,r,tr);
+}
+void DisplayMat(int r,int c,int Mat[10][10])
+{
+    int i,j;
+    for(i=0;i<r;i++)
+    {
+        for(j=0;j<c;j++)
+        {
+            printf("%d\t",Mat[i][j]);
+        }
+        printf("\n");
+    }
+}
