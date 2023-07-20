@@ -16,7 +16,7 @@ int main() {
         printf("Enter employee id: ");
         scanf("%d", &emp[i].id);
         printf("Enter name: ");
-        scanf("%s", emp[i].name); // Use %s to read a string
+        scanf("%s", emp[i].name); // 
         printf("Enter salary: ");
         scanf("%d", &emp[i].salary);
     }
