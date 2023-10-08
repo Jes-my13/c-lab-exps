@@ -40,7 +40,7 @@ void add(int a[],int n1,int b[],int n2)
     {
         if(a[p]==b[q])
         {
-            a[p]=b[q];
+            c[r]=b[q];
             c[r+1]=a[p+1]+b[q+1];
             if (c[r+1]!=0)
             {
@@ -76,20 +76,17 @@ while (p<=2*n1)
 while (q<=2*n2)
 {
     c[r]=b[q];
-    c[r+1]==b[q+1];
+    c[r+1]=b[q+1];
     q=q+2;
     r=r+2;
 }
-c[0]=r/2;
-printf("array form");
-for(i=0;i<=2*(n1+n2);i++)
-{
-    printf("%d",c[i]);
-}
+c[0]=(r-1)/2;
 printf("exponent form");
-for (i=1;i<=2*(n1+n2);i=i+2)
+for (i=1;i<=2*c[0];i=i+2)
 {
-    printf("%dx^%d+",c[i+1],c[i]);
+     printf("%dx^%d", c[i + 1], c[i]);
+     if (i < 2 * c[0] - 1) {
+            printf("+");}
 }}
 void display (int x[],int num)
 { int i;
